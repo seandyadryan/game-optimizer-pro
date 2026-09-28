@@ -6,12 +6,14 @@ import android.provider.Settings
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.activity.SystemBarStyle
 import androidx.compose.foundation.background
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.rounded.ArrowForward
@@ -47,7 +49,10 @@ private val colors = darkColorScheme(primary = Lime, onPrimary = Background, bac
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
+        enableEdgeToEdge(
+            statusBarStyle = SystemBarStyle.dark(android.graphics.Color.TRANSPARENT),
+            navigationBarStyle = SystemBarStyle.dark(android.graphics.Color.TRANSPARENT)
+        )
         setContent { MaterialTheme(colorScheme = colors) { OptimizerApp() } }
     }
 
@@ -55,6 +60,7 @@ class MainActivity : ComponentActivity() {
     private fun OptimizerApp() {
         val repo = remember { DeviceRepository(applicationContext) }
         var page by rememberSaveable { mutableIntStateOf(0) }
+        val tabScrollStates = List(4) { rememberLazyListState() }
         var onboarded by remember { mutableStateOf(repo.hasOnboarded()) }
         var snapshot by remember { mutableStateOf(DeviceSnapshot()) }
         var apps by remember { mutableStateOf(emptyList<GameApp>()) }
@@ -90,7 +96,7 @@ class MainActivity : ComponentActivity() {
                 }
             }
         }) { padding ->
-            LazyColumn(Modifier.fillMaxSize().padding(padding), contentPadding = PaddingValues(22.dp), verticalArrangement = Arrangement.spacedBy(18.dp)) {
+            LazyColumn(Modifier.fillMaxSize().padding(padding), state = tabScrollStates[page], contentPadding = PaddingValues(22.dp), verticalArrangement = Arrangement.spacedBy(18.dp)) {
                 item {
                     Row(verticalAlignment = Alignment.CenterVertically) {
                         Box(Modifier.size(44.dp).background(Lime, RoundedCornerShape(14.dp)), contentAlignment = Alignment.Center) {
