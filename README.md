@@ -41,6 +41,8 @@ Keep a secure offline backup of the key and credentials. They are not committed.
 
 The `Android build` workflow uses ephemeral GitHub-hosted `ubuntu-latest` runners. Pull requests run JVM tests, Android lint and debug APK builds. Pushes to `main`, `v*` tags, and manual dispatches additionally produce a signed APK and Play Store AAB after verification passes.
 
+Android 36 emulator tests exercise navigation, privacy, persistence, and session lifecycle, and capture actual UI screenshots. Release output requires both verification jobs to pass.
+
 Repository Actions secrets: `KEYSTORE_BASE64`, `KEYSTORE_PASSWORD`, `KEY_ALIAS`, `KEY_PASSWORD`. Download outputs from the workflow run's Artifacts section. The runner's temporary key is removed even if the build fails. No Play Console deployment occurs automatically.
 
 ## Release preparation
