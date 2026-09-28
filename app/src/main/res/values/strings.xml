@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Game Optimizer PRO</string>
+    <style name="Theme.GameOptimizer" parent="android:style/Theme.Material.NoActionBar">
+        <item name="android:fontFamily">sans</item>
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="android:windowLightNavigationBar">false</item>
+        <item name="android:windowBackground">#0C1019</item>
+        <item name="android:colorAccent">#B9F66B</item>
+    </style>
+    <color name="icon_background">#0C1019</color>
+</resources>
