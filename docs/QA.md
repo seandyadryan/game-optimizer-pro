@@ -6,6 +6,10 @@
 
 JVM tests cover readiness priority, thermal reporting without a battery sensor, battery boundary, power saving, unavailable metrics, and session duration behavior. Android lint checks platform compatibility and resources. GitHub validates release signatures.
 
+Version 1.1 adds legacy Indonesian profile migration and stable profile serialization tests (11 JVM tests total). Six instrumentation tests run on both API 26 and 36, covering localized resources, language selection/persistence/RTL/system default, real installed icons and missing-app fallback, navigation, session persistence, and migration of old history. `scripts/Generate-Locales.ps1 -Check` validates all 24 catalogs and their 104 messages and placeholders.
+
+Language and icon screenshots are included in the `device-test-reports-api-26` and `device-test-reports-api-36` CI artifacts.
+
 ## Initial verification — 28 September 2026
 
 - 8 JVM tests passed; 2 Android 16 emulator tests passed, with no failures or errors.
@@ -25,6 +29,8 @@ Emulator tests are not a replacement for physical-device or Play pre-launch test
 - Profile: save each profile, restart and confirm persistence; recommendations do not claim to apply game settings.
 - Sessions: launch an app, return, finish; confirm manual history. Prevent another session while one is active. Check process death and reboot with active timer.
 - Settings: manufacturer-specific pages either open or show an explanatory error. Delete history confirmation and cancellation work.
+- Languages: change language from onboarding and Settings; restart, follow device, search by native name, and review every market's text at large font sizes. Verify Arabic, Persian, and Urdu layout direction.
+- Icons: installed game logos appear in all game surfaces; removed games and pre-1.1 session history use the fallback icon.
 - Accessibility: TalkBack, 200% font scale, landscape, tablet layout, gesture navigation and three-button navigation.
 - Release: install signed APK; upload AAB to Play internal testing and review pre-launch report.
 

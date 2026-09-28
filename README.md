@@ -1,9 +1,9 @@
 # Game Optimizer PRO
 
-Native Android gaming companion built with Kotlin and Jetpack Compose. Indonesian interface, dark premium theme, lime accents, Android 8+ support.
+Native Android gaming companion built with Kotlin and Jetpack Compose. 24 selectable interface languages, dark premium theme, lime accents, Android 8+ support.
 
 **Application ID:** `com.deploydulupulangnanti.gameoptimizerpro`  
-**Version:** 1.0.0 (1) · **Target SDK:** 36 · **Minimum SDK:** 26
+**Version:** 1.1.0 (2) · **Target SDK:** 36 · **Minimum SDK:** 26
 
 ## Screenshots
 
@@ -15,6 +15,8 @@ Actual Android 16 emulator captures; device readings are emulator values.
 
 - Live device dashboard: available system RAM, battery level/temperature, free storage, connectivity, power saving and thermal warnings.
 - Game library: Android-classified games plus user-selected launcher apps; search and launch.
+- Original installed app icons in the library, picker, profiles, active sessions, and new history entries; safe fallback for removed apps and older history.
+- Settings → Language: choose one of 24 languages or follow the device. Selection persists, Arabic/Persian/Urdu support RTL, and all translations are bundled for offline switching.
 - Per-game Balanced, Competitive, and Endurance recommendation profiles.
 - Persistent manual session timer and up to 100 completed sessions, with deletion controls.
 - Shortcuts to Wi-Fi, Do Not Disturb, display, and battery settings.
@@ -47,9 +49,15 @@ Keep a secure offline backup of the key and credentials. They are not committed.
 
 The `Android build` workflow uses ephemeral GitHub-hosted `ubuntu-latest` runners. Pull requests run JVM tests, Android lint and debug APK builds. Pushes to `main`, `v*` tags, and manual dispatches additionally produce a signed APK and Play Store AAB after verification passes.
 
-Android 36 emulator tests exercise navigation, privacy, persistence, and session lifecycle, and capture actual UI screenshots. Release output requires both verification jobs to pass.
+Android 26 and 36 emulator tests exercise navigation, privacy, persistence, session migration, installed icons, language switching and RTL, and capture actual UI screenshots. Release output requires verification and both emulator jobs to pass.
 
 Repository Actions secrets: `KEYSTORE_BASE64`, `KEYSTORE_PASSWORD`, `KEY_ALIAS`, `KEY_PASSWORD`. Download outputs from the workflow run's Artifacts section. The runner's temporary key is removed even if the build fails. No Play Console deployment occurs automatically.
+
+## Localization
+
+Included: English, Indonesian, Malay, Spanish, Brazilian Portuguese, French, German, Italian, Dutch, Polish, Russian, Ukrainian, Turkish, Arabic, Persian, Hindi, Bengali, Urdu, Simplified Chinese, Traditional Chinese, Japanese, Korean, Thai, and Vietnamese. Unsupported device languages fall back to English. Game names and logos are supplied by installed apps.
+
+Edit the 104 translated messages per language in `localization/*.json`. Run `pwsh ./scripts/Generate-Locales.ps1` to update Android resources; `pwsh ./scripts/Generate-Locales.ps1 -Check` checks coverage, format placeholders, and generated files in CI. Add languages through `localization/languages.json` and a matching catalog. Have native speakers review store copy and translations for each launch market.
 
 ## Release preparation
 

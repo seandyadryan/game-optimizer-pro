@@ -9,7 +9,8 @@ Game Optimizer PRO tidak mengumpulkan atau mengirim data pribadi ke server. Apli
 ## Informasi yang diproses di perangkat
 
 - Baterai, suhu baterai, kondisi termal, RAM, ruang penyimpanan, mode hemat daya, dan jenis/status koneksi untuk dashboard.
-- Nama dan package aplikasi yang dapat diluncurkan untuk pustaka game. Daftar ini tidak dikirim ke pihak lain.
+- Nama, package, dan ikon aplikasi yang dapat diluncurkan untuk pustaka game. Daftar dan ikon dibaca dari perangkat, tidak dikirim ke pihak lain.
+- Pilihan bahasa disimpan di perangkat. Terjemahan tersedia secara offline tanpa layanan penerjemah eksternal.
 - Game pilihan, profil rekomendasi, serta waktu mulai dan selesai sesi yang dicatat manual. Maksimal 100 sesi terakhir disimpan.
 
 Izin `ACCESS_NETWORK_STATE` digunakan untuk menampilkan status koneksi, tanpa membaca lalu lintas jaringan. Aplikasi membuka halaman pengaturan sistem atas tindakan pengguna. Pengguna sendiri yang menentukan perubahan pengaturan.

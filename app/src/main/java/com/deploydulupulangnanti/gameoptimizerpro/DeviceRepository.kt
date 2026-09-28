@@ -29,12 +29,12 @@ class DeviceRepository(private val context: Context) {
         val cm = context.getSystemService(ConnectivityManager::class.java)
         val capabilities = cm.getNetworkCapabilities(cm.activeNetwork)
         val network = when {
-            capabilities == null -> "Offline"
-            !capabilities.hasCapability(NetworkCapabilities.NET_CAPABILITY_VALIDATED) -> "Tanpa internet"
-            capabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) -> "Wi-Fi"
-            capabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) -> "Seluler"
-            capabilities.hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET) -> "Ethernet"
-            else -> "Terhubung"
+            capabilities == null -> NetworkStatus.OFFLINE
+            !capabilities.hasCapability(NetworkCapabilities.NET_CAPABILITY_VALIDATED) -> NetworkStatus.NO_INTERNET
+            capabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) -> NetworkStatus.WIFI
+            capabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) -> NetworkStatus.CELLULAR
+            capabilities.hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET) -> NetworkStatus.ETHERNET
+            else -> NetworkStatus.CONNECTED
         }
         return DeviceSnapshot(
             battery = if (level >= 0 && scale > 0) (level * 100 / scale).coerceIn(0, 100) else null,
@@ -61,34 +61,33 @@ class DeviceRepository(private val context: Context) {
         if (!values.add(pkg)) values.remove(pkg)
         prefs.edit().putStringSet("games", values).apply()
     }
-    fun profile(pkg: String): GameProfile = runCatching {
-        GameProfile.valueOf(prefs.getString("profile:$pkg", GameProfile.BALANCED.name)!!)
-    }.getOrDefault(GameProfile.BALANCED)
+    fun profile(pkg: String): GameProfile = GameProfile.fromStored(prefs.getString("profile:$pkg", GameProfile.BALANCED.name)!!)
     fun setProfile(pkg: String, profile: GameProfile) { prefs.edit().putString("profile:$pkg", profile.name).apply() }
     fun hasOnboarded(): Boolean = prefs.getBoolean("onboarded", false)
     fun onboard() { prefs.edit().putBoolean("onboarded", true).apply() }
 
     fun active(): ActiveSession? = runCatching {
         val json = JSONObject(prefs.getString("active", null) ?: return null)
-        ActiveSession(json.getString("game"), json.getLong("started"), json.getString("profile"))
+        ActiveSession(json.getString("game"), json.getLong("started"), GameProfile.fromStored(json.getString("profile")), json.optString("packageName").takeIf { it.isNotBlank() })
     }.getOrNull()
     fun start(game: GameApp) {
-        check(active() == null) { "Selesaikan sesi aktif terlebih dahulu" }
+        check(active() == null) { "An active session already exists" }
         prefs.edit().putString("active", JSONObject().put("game", game.label)
-            .put("started", System.currentTimeMillis()).put("profile", profile(game.packageName).title).toString()).apply()
+            .put("started", System.currentTimeMillis()).put("profile", profile(game.packageName).name)
+            .put("packageName", game.packageName).toString()).apply()
     }
     fun sessions(): List<PlaySession> = runCatching {
         val array = JSONArray(prefs.getString("sessions", "[]"))
         (0 until array.length()).map { index ->
             val item = array.getJSONObject(index)
-            PlaySession(item.getString("game"), item.getLong("started"), item.getLong("ended"), item.getString("profile"))
+            PlaySession(item.getString("game"), item.getLong("started"), item.getLong("ended"), GameProfile.fromStored(item.getString("profile")), item.optString("packageName").takeIf { it.isNotBlank() })
         }
     }.getOrDefault(emptyList())
     fun finish() {
         val current = active() ?: return
-        val values = (listOf(PlaySession(current.game, current.started, System.currentTimeMillis(), current.profile)) + sessions()).take(100)
+        val values = (listOf(PlaySession(current.game, current.started, System.currentTimeMillis(), current.profile, current.packageName)) + sessions()).take(100)
         val array = JSONArray()
-        values.forEach { array.put(JSONObject().put("game", it.game).put("started", it.started).put("ended", it.ended).put("profile", it.profile)) }
+        values.forEach { array.put(JSONObject().put("game", it.game).put("started", it.started).put("ended", it.ended).put("profile", it.profile.name).put("packageName", it.packageName)) }
         prefs.edit().remove("active").putString("sessions", array.toString()).apply()
     }
     fun clearHistory() { prefs.edit().remove("sessions").apply() }
