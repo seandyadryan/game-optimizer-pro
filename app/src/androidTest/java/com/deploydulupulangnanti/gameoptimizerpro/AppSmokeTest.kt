@@ -6,6 +6,8 @@ import androidx.test.platform.app.InstrumentationRegistry
 import org.junit.Assert.*
 import org.junit.Rule
 import org.junit.Test
+import android.graphics.Bitmap
+import java.io.File
 
 class AppSmokeTest {
     @get:Rule val compose = createAndroidComposeRule<MainActivity>()
@@ -14,14 +16,18 @@ class AppSmokeTest {
         compose.onAllNodesWithText("Mulai").fetchSemanticsNodes().firstOrNull()?.let {
             compose.onNodeWithText("Mulai").performClick()
         }
+        screenshot("01-dashboard")
         compose.onNodeWithText("Buka pustaka game").performScrollTo().performClick()
         compose.onNodeWithText("Pustaka game").assertIsDisplayed()
+        screenshot("02-library")
         compose.onNodeWithText("Tambahkan game").performClick()
         compose.onNodeWithText("Cari aplikasi").assertIsDisplayed()
         compose.onNodeWithText("Selesai").performClick()
         compose.onNodeWithText("Aktivitas").performClick()
         compose.onNodeWithText("Aktivitas bermain").assertIsDisplayed()
+        screenshot("03-activity")
         compose.onNodeWithText("Pengaturan").performClick()
+        screenshot("04-settings")
         compose.onNodeWithText("Kebijakan privasi").performScrollTo().performClick()
         compose.onNodeWithText("Tutup").assertIsDisplayed().performClick()
     }
@@ -44,5 +50,15 @@ class AppSmokeTest {
         assertEquals("Kompetitif", restored.sessions().first().profile)
         restored.clearHistory()
         assertTrue(restored.sessions().isEmpty())
+    }
+
+    private fun screenshot(name: String) {
+        compose.waitForIdle()
+        val instrumentation = InstrumentationRegistry.getInstrumentation()
+        val directory = File(instrumentation.targetContext.getExternalFilesDir(null), "screenshots").apply { mkdirs() }
+        val bitmap = instrumentation.uiAutomation.takeScreenshot()
+        checkNotNull(bitmap) { "Unable to capture emulator screenshot" }
+        File(directory, "$name.png").outputStream().use { bitmap.compress(Bitmap.CompressFormat.PNG, 100, it) }
+        bitmap.recycle()
     }
 }

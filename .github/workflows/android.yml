@@ -66,7 +66,10 @@ jobs:
           arch: x86_64
           profile: pixel_2
           disable-animations: true
-          script: ./gradlew connectedDebugAndroidTest --stacktrace
+          script: |
+            ./gradlew connectedDebugAndroidTest --stacktrace
+            mkdir -p app/build/screenshots
+            adb pull /sdcard/Android/data/com.deploydulupulangnanti.gameoptimizerpro/files/screenshots app/build/screenshots
       - uses: actions/upload-artifact@v4
         if: always()
         with:
@@ -74,6 +77,7 @@ jobs:
           path: |
             app/build/reports/androidTests
             app/build/outputs/androidTest-results
+            app/build/screenshots
 
   release:
     name: Signed Play Store bundle
