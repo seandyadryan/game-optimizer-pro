@@ -5,6 +5,12 @@ Native Android gaming companion built with Kotlin and Jetpack Compose. Indonesia
 **Application ID:** `com.deploydulupulangnanti.gameoptimizerpro`  
 **Version:** 1.0.0 (1) · **Target SDK:** 36 · **Minimum SDK:** 26
 
+## Screenshots
+
+Actual Android 16 emulator captures; device readings are emulator values.
+
+<img src="docs/screenshots/01-dashboard.png" width="240" alt="Device dashboard" /> <img src="docs/screenshots/02-library.png" width="240" alt="Game library" /> <img src="docs/screenshots/03-activity.png" width="240" alt="Session history" />
+
 ## Features
 
 - Live device dashboard: available system RAM, battery level/temperature, free storage, connectivity, power saving and thermal warnings.

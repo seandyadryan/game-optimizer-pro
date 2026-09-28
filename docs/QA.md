@@ -6,6 +6,17 @@
 
 JVM tests cover readiness priority, thermal reporting without a battery sensor, battery boundary, power saving, unavailable metrics, and session duration behavior. Android lint checks platform compatibility and resources. GitHub validates release signatures.
 
+## Initial verification — 28 September 2026
+
+- 8 JVM tests passed; 2 Android 16 emulator tests passed, with no failures or errors.
+- Debug and release lint passed (dependency update and style suggestions remain non-blocking).
+- Local signed APK and AAB builds passed. APK signature and AAB JAR signature verified.
+- APK ZIP alignment and bundled arm64/x86_64 ELF load-segment alignment checked for 16 KB support.
+- Actual screenshots in `docs/screenshots` were visually reviewed; system bar contrast and per-tab scroll were corrected during review.
+- CI run: https://github.com/seandyadryan/game-optimizer-pro/actions/runs/36406464969
+
+Emulator tests are not a replacement for physical-device or Play pre-launch testing.
+
 ## Manual device acceptance
 
 - Fresh install: introductory disclosure appears; acceptance persists after restart.
