@@ -21,6 +21,14 @@ Language and icon screenshots are included in the `device-test-reports-api-26` a
 
 Emulator tests are not a replacement for physical-device or Play pre-launch testing.
 
+## Version 1.1 verification — 29 September 2026
+
+- All 24 catalogs passed coverage and placeholder validation (104 translated messages each).
+- 11 JVM tests passed, plus 6 instrumentation tests on Android 8/API 26 and 6 on Android 16/API 36, with no failures or errors.
+- Local debug/release lint, APK/AAB builds, signature verification, and 16 KB APK alignment checks passed.
+- Actual Android 16 screenshots in `docs/screenshots` were refreshed; Arabic RTL, Japanese settings, and installed app icons were visually reviewed on both emulator generations.
+- CI run: https://github.com/seandyadryan/game-optimizer-pro/actions/runs/36457516447
+
 ## Manual device acceptance
 
 - Fresh install: introductory disclosure appears; acceptance persists after restart.

@@ -11,6 +11,8 @@ Actual Android 16 emulator captures; device readings are emulator values.
 
 <img src="docs/screenshots/01-dashboard.png" width="240" alt="Device dashboard" /> <img src="docs/screenshots/02-library.png" width="240" alt="Game library" /> <img src="docs/screenshots/03-activity.png" width="240" alt="Session history" />
 
+<img src="docs/screenshots/06-arabic-rtl.png" width="240" alt="Arabic right-to-left settings" /> <img src="docs/screenshots/07-japanese.png" width="240" alt="Japanese settings" /> <img src="docs/screenshots/05-installed-app-icons.png" width="240" alt="Original installed app icon in the picker" />
+
 ## Features
 
 - Live device dashboard: available system RAM, battery level/temperature, free storage, connectivity, power saving and thermal warnings.
