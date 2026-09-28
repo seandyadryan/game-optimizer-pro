@@ -6,8 +6,7 @@ import androidx.test.platform.app.InstrumentationRegistry
 import org.junit.Assert.*
 import org.junit.Rule
 import org.junit.Test
-import android.graphics.Bitmap
-import java.io.File
+import android.os.ParcelFileDescriptor
 
 class AppSmokeTest {
     @get:Rule val compose = createAndroidComposeRule<MainActivity>()
@@ -54,11 +53,11 @@ class AppSmokeTest {
 
     private fun screenshot(name: String) {
         compose.waitForIdle()
-        val instrumentation = InstrumentationRegistry.getInstrumentation()
-        val directory = File(instrumentation.targetContext.getExternalFilesDir(null), "screenshots").apply { mkdirs() }
-        val bitmap = instrumentation.uiAutomation.takeScreenshot()
-        checkNotNull(bitmap) { "Unable to capture emulator screenshot" }
-        File(directory, "$name.png").outputStream().use { bitmap.compress(Bitmap.CompressFormat.PNG, 100, it) }
-        bitmap.recycle()
+        val automation = InstrumentationRegistry.getInstrumentation().uiAutomation
+        // Shell-owned output survives AGP uninstalling the test application after the suite.
+        val directory = "/sdcard/Download/game-optimizer-screenshots"
+        listOf("mkdir -p $directory", "screencap -p $directory/$name.png").forEach { command ->
+            ParcelFileDescriptor.AutoCloseInputStream(automation.executeShellCommand(command)).use { it.readBytes() }
+        }
     }
 }
