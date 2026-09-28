@@ -33,14 +33,14 @@ jobs:
       - uses: gradle/actions/setup-gradle@v4
       - run: chmod +x gradlew
       - run: ./gradlew testDebugUnitTest lintDebug assembleDebug --stacktrace
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         if: always()
         with:
           name: verification-reports
           path: |
             app/build/reports
             app/build/test-results
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         with:
           name: game-optimizer-pro-debug
           path: app/build/outputs/apk/debug/*.apk
@@ -73,7 +73,7 @@ jobs:
             ./gradlew connectedDebugAndroidTest --stacktrace
             mkdir -p app/build/screenshots
             adb pull /sdcard/Android/data/com.deploydulupulangnanti.gameoptimizerpro/files/screenshots app/build/screenshots
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         if: always()
         with:
           name: device-test-reports
@@ -118,7 +118,7 @@ jobs:
         run: |
           jarsigner -verify app/build/outputs/bundle/release/app-release.aab
           "$ANDROID_HOME/build-tools/35.0.0/apksigner" verify app/build/outputs/apk/release/app-release.apk
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         with:
           name: game-optimizer-pro-release
           retention-days: 30
