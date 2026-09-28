@@ -141,7 +141,7 @@ class MainActivity : ComponentActivity() {
                         item { SectionTitle("Persiapan bermain", "Anda mengendalikan pengaturan") }
                         item { Tile {
                             SettingRow(Icons.Rounded.Wifi, "Jaringan", "Pilih koneksi yang stabil") { openSettings(Settings.ACTION_WIFI_SETTINGS) }
-                            SettingRow(Icons.Rounded.DoNotDisturbOn, "Jangan Ganggu", "Atur notifikasi sebelum bermain") { openSettings(Settings.ACTION_ZEN_MODE_SETTINGS) }
+                            SettingRow(Icons.Rounded.DoNotDisturbOn, "Suara & Jangan Ganggu", "Tinjau suara dan notifikasi perangkat") { openSettings(Settings.ACTION_SOUND_SETTINGS) }
                             SettingRow(Icons.Rounded.Brightness6, "Layar", "Sesuaikan kecerahan & refresh rate") { openSettings(Settings.ACTION_DISPLAY_SETTINGS) }
                             SettingRow(Icons.Rounded.BatteryChargingFull, "Baterai", "Tinjau mode hemat daya") { openSettings(Settings.ACTION_BATTERY_SAVER_SETTINGS) }
                         } }
