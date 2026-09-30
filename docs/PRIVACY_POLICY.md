@@ -1,6 +1,8 @@
 # Kebijakan Privasi — Game Optimizer PRO
 
-Tanggal berlaku: 28 September 2026  
+Tanggal berlaku: 30 September 2026<br>
+Versi HTML dwibahasa untuk dibaca dan diterbitkan tersedia di [privacy-policy.html](../privacy-policy.html). Terbitkan melalui hosting statis sebelum memasukkan URL publik ke Google Play Console.
+
 Pengembang: seandyadryan / Deploy Dulu Pulang Nanti  
 Aplikasi: `com.deploydulupulangnanti.gameoptimizerpro`
 

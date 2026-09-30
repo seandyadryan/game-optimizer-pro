@@ -63,4 +63,4 @@ Edit the 104 translated messages per language in `localization/*.json`. Run `pws
 
 ## Release preparation
 
-See [Play Store checklist](docs/PLAY_STORE.md), [privacy policy](docs/PRIVACY_POLICY.md), and [QA checklist](docs/QA.md). Source code is proprietary; no third-party redistribution license is granted. Dependency licenses remain applicable.
+See [Play Store checklist](docs/PLAY_STORE.md), [privacy policy in HTML](privacy-policy.html), [privacy policy source](docs/PRIVACY_POLICY.md), and [QA checklist](docs/QA.md). Source code is proprietary; no third-party redistribution license is granted. Dependency licenses remain applicable.

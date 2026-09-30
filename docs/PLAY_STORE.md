@@ -15,7 +15,7 @@ Project ini menyiapkan produk awal dan AAB bertanda tangan; publikasi dan perset
 1. Tentukan harga, negara distribusi, identitas pengembang, dan alamat email dukungan di Play Console. Jangan terbitkan sebagai gratis jika rencananya menjual aplikasi yang sama sebagai berbayar; periksa aturan monetisasi saat publikasi.
 2. Aktifkan Play App Signing. Gunakan JKS project sebagai upload key dan simpan cadangan terenkripsi di lokasi aman.
 3. Unduh AAB release dari Actions. Tingkatkan `versionCode` pada setiap unggahan baru.
-4. Host kebijakan privasi pada URL publik yang stabil. Verifikasi nama pengembang dan kontak sudah cocok dengan akun Play Console.
+4. Host [kebijakan privasi HTML](../privacy-policy.html) pada URL publik yang stabil. Verifikasi nama pengembang dan kontak sudah cocok dengan akun Play Console; dokumen ini perlu dipublikasikan lewat hosting statis sebelum URL dimasukkan ke Play Console.
 5. Isi Data Safety sesuai perilaku build final: tidak ada pengumpulan/pembagian data oleh aplikasi saat ini. Pemrosesan hanya lokal. Tinjau kembali bila menambah SDK.
 6. Lengkapi deklarasi iklan (tidak ada), rating konten, target audiens, akses aplikasi, dan pertanyaan kebijakan lain.
 7. Ikon listing PNG 512×512 dan feature graphic 1024×500 tersedia di `docs/store-assets`. Screenshot nyata emulator dihasilkan oleh job UI dalam artifact `device-test-reports`; tinjau sebelum dipakai untuk listing. Aset dapat dibuat ulang melalui `scripts/New-StoreAssets.ps1`.
