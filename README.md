@@ -59,7 +59,7 @@ Repository Actions secrets: `KEYSTORE_BASE64`, `KEYSTORE_PASSWORD`, `KEY_ALIAS`,
 
 Included: English, Indonesian, Malay, Spanish, Brazilian Portuguese, French, German, Italian, Dutch, Polish, Russian, Ukrainian, Turkish, Arabic, Persian, Hindi, Bengali, Urdu, Simplified Chinese, Traditional Chinese, Japanese, Korean, Thai, and Vietnamese. Unsupported device languages fall back to English. Game names and logos are supplied by installed apps.
 
-Edit the 104 translated messages per language in `localization/*.json`. Run `pwsh ./scripts/Generate-Locales.ps1` to update Android resources; `pwsh ./scripts/Generate-Locales.ps1 -Check` checks coverage, format placeholders, and generated files in CI. Add languages through `localization/languages.json` and a matching catalog. Have native speakers review store copy and translations for each launch market.
+Edit the 104 translated messages per language in `localization/*.json`. Run `pwsh ./scripts/Generate-Locales.ps1` to update Android resources; `pwsh ./scripts/Generate-Locales.ps1 -Check` checks coverage, format placeholders, and generated files in CI. Add languages through `localization/languages.json` and a matching catalog. Play Store listing copy for the same 24 languages is in `localization/play_store.json`; short and full descriptions stay within the Play character limits.
 
 ## Release preparation
 

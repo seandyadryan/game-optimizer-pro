@@ -10,6 +10,10 @@ Project ini menyiapkan produk awal dan AAB bertanda tangan; publikasi dan perset
 - Kategori yang disarankan: Tools.
 - Model penjualan: aplikasi berbayar di Play Console; tidak ada pembelian dalam aplikasi.
 
+## Teks listing 24 bahasa
+
+Teks deskripsi singkat dan lengkap untuk semua bahasa aplikasi tersedia di [katalog listing](../localization/play_store.json). Batas karakter telah diperiksa: deskripsi singkat maksimal 80 karakter dan deskripsi lengkap maksimal 4.000 karakter pada setiap bahasa. Terjemahan dibuat berdasarkan fitur produk; mintalah penutur asli meninjau teks untuk negara tujuan sebelum listing dipublikasikan.
+
 ## Sebelum mengirim ke review
 
 1. Tentukan harga, negara distribusi, identitas pengembang, dan alamat email dukungan di Play Console. Jangan terbitkan sebagai gratis jika rencananya menjual aplikasi yang sama sebagai berbayar; periksa aturan monetisasi saat publikasi.
