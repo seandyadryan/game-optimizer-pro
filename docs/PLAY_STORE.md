@@ -22,7 +22,7 @@ Teks deskripsi singkat dan lengkap untuk semua bahasa aplikasi tersedia di [kata
 4. Host [kebijakan privasi HTML](../privacy-policy.html) pada URL publik yang stabil. Verifikasi nama pengembang dan kontak sudah cocok dengan akun Play Console; dokumen ini perlu dipublikasikan lewat hosting statis sebelum URL dimasukkan ke Play Console.
 5. Isi Data Safety sesuai perilaku build final: tidak ada pengumpulan/pembagian data oleh aplikasi saat ini. Pemrosesan hanya lokal. Tinjau kembali bila menambah SDK.
 6. Lengkapi deklarasi iklan (tidak ada), rating konten, target audiens, akses aplikasi, dan pertanyaan kebijakan lain.
-7. Ikon listing PNG 512×512 dan feature graphic 1024×500 tersedia di `docs/store-assets`. Screenshot nyata emulator dihasilkan oleh job UI dalam artifact `device-test-reports`; tinjau sebelum dipakai untuk listing. Aset dapat dibuat ulang melalui `scripts/New-StoreAssets.ps1`.
+7. Gunakan [ikon aplikasi 512×512](../docs/store-assets/play-icon-512.png) dan [gambar fitur global 1024×500](../docs/store-assets/feature-graphic-1024x500.png). Versi Indonesia tersedia di [feature graphic Bahasa Indonesia](../docs/store-assets/feature-graphic-id-1024x500.png). Keduanya PNG di bawah batas 15 MB. Aset dapat dibuat ulang melalui `scripts/New-StoreAssets.ps1`.
 8. Uji di perangkat fisik berbagai merek, termasuk Android 8 dan Android 16, mode layar besar, font besar, offline, dan mode hemat daya. Jalankan closed testing bila diwajibkan untuk akun Anda.
 9. Pastikan persyaratan API, verifikasi akun, pengujian, dan kebijakan yang berlaku saat pengiriman telah dipenuhi. Tidak ada jaminan otomatis lolos review.
 
